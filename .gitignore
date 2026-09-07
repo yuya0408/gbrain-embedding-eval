@@ -1,0 +1,4 @@
+# Corpus/query/embedding data derived from private dev/ content -- never commit.
+data/
+__pycache__/
+*.pyc
