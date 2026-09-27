@@ -32,7 +32,7 @@ CHUNKS_PATH=data/chunks_eval.jsonl OUT_PATH=data/auto_queries.jsonl python gen_s
 python embed_all.py
 python screen.py
 python finals.py
-python measure_latency.py
+python measure_latency.py 100   # 記事の数値は gbrain 本体の送信単位と同じ batch=100
 ```
 
 手動作成クエリは `data/curated_queries.jsonl` に `{"query_id", "query_text", "gold_slug"}` 形式で置く。
