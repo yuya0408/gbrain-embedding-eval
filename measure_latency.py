@@ -3,10 +3,15 @@
 
 Two things measured, matching what a personal RAG's UX actually depends on:
   - single-query embedding latency (median of 15 consecutive calls, one short query)
-  - batch ingest throughput (200 chunks, batch=32, from the real corpus)
+  - batch ingest throughput (200 chunks, batch=32 by default, from the real corpus)
+
+Usage: python measure_latency.py [batch_size]
+  gbrain itself sends up to 100 texts per embed request (src/core/embedding.ts),
+  so run with 100 as well to check the ranking holds at gbrain's batch size.
 """
 import json
 import os
+import sys
 import statistics
 import time
 import urllib.request
@@ -24,7 +29,7 @@ FINALISTS = {
 SAMPLE_QUERY = "gbrainのMCPサーバーをローカルで設定する手順は？"
 N_SINGLE = 15
 N_BATCH_CHUNKS = 200
-BATCH = 32
+BATCH = int(sys.argv[1]) if len(sys.argv) > 1 else 32
 
 
 def load_chunks(n):
