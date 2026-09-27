@@ -3,7 +3,7 @@
 185-query binary hit@10 outcomes; if significant, follow up with all 6 pairwise
 exact McNemar tests (Holm-corrected).
 
-Finalists (screening tie-break, MRR 0.700-0.741, break to 5th place at 0.395):
+Finalists (screening tie-break, MRR 0.700-0.741, break to nomic-embed-text at 0.394):
 embeddinggemma, qwen3-embedding, snowflake-arctic-embed2, bge-m3
 
 Hit rule mirrors screen.py: auto queries match by exact chunk_id; curated
