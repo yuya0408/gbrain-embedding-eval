@@ -14,6 +14,14 @@ RAG基盤 [gbrain](https://github.com/garrytan/gbrain) の埋め込みモデル�
 | 2. 有意差検定 | 決勝4モデルの hit@10 に Cochran's Q 検定(N=185) | Q=2.65, df=3, **p=0.449**。有意差を検出できず、事後の McNemar 検定には進まない |
 | 3. タイブレーカー | 単発レイテンシとバッチスループットを実測 | 単発は横並び(差6%以内)。スループットで embeddinggemma が 1.89 chunks/s と最速 |
 
+```mermaid
+flowchart LR
+    A["候補 6モデル"] -->|"Stage 1: MRR の断絶で足切り"| B["決勝 4モデル"]
+    B -->|"Stage 2: Cochran's Q<br/>p=0.449、有意差なし"| C["品質では決めない"]
+    C -->|"Stage 3: スループット実測"| D["採用: embeddinggemma"]
+    D -.->|"確認: gbrain 本体"| E["MRR 0.336 → 0.676"]
+```
+
 選定後、gbrain 本体で同じ185件を移行前後に流して確認した。MRR は 0.336 → 0.676 に上がった(「gbrain 本体での確認」の節)。
 
 解説記事: [gbrainの埋め込みモデルを個人最適化したら、検索精度がほぼ倍になった(Zenn)](https://zenn.dev/yuya0408/articles/gbrain-embedding-eval)
@@ -36,6 +44,8 @@ gbrain の Ollama 向けレシピは `nomic-embed-text`(768次元)を既定に�
 ## Stage 1: 足切り
 
 コサイン類似度の top-10 で、Recall@10(正解が上位10件に入った割合)と MRR を算出した(n=185)。
+
+![Stage 1 の MRR。上位4モデルが 0.700〜0.741 に密集し、5位の nomic-embed-text は 0.394](docs/screening_mrr.svg)
 
 | モデル | Recall@10 | MRR | |
 | --- | --- | --- | --- |
@@ -68,6 +78,8 @@ CPU 推論のノートPC(Ryzen 5 7520U、メモリ16GB、専用GPUなし、Ollam
 
 - 単発レイテンシ: 短いクエリ1件を15回投げた中央値
 - バッチスループット: コーパスの200チャンクを gbrain 本体と同じ batch=100 で投入
+
+![Stage 3 のバッチスループット。embeddinggemma 1.89、snowflake-arctic-embed2 と bge-m3 が 0.78、qwen3-embedding 0.29 chunks/s](docs/throughput.svg)
 
 | モデル | パラメータ | 次元 | 単発(中央値, ms) | 200件の所要時間(s) | スループット(chunks/s) |
 | --- | --- | --- | --- | --- | --- |

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="334" viewBox="0 0 720 334" role="img" aria-label="Stage 1: 候補6モデルの MRR(n=185)">
+<style>
+  .surface{fill:#fcfcfb} .title{fill:#0b0b0b} .sub,.lbl{fill:#52514e} .val{fill:#0b0b0b}
+  .axis{stroke:#898781} .grid{stroke:#e1e0d9} .note{fill:#52514e} .cut{stroke:#52514e}
+  .hi{fill:#2a78d6} .lo{fill:#b5b4ad}
+  @media (prefers-color-scheme: dark){
+    .surface{fill:#1a1a19} .title,.val{fill:#ffffff} .sub,.lbl,.note{fill:#c3c2b7}
+    .grid{stroke:#2c2c2a} .cut{stroke:#c3c2b7} .hi{fill:#3987e5} .lo{fill:#5c5b56}
+  }
+  text{font-family:-apple-system,"Segoe UI","Hiragino Sans","Yu Gothic UI",Meiryo,sans-serif}
+</style>
+<rect class="surface" width="720" height="334" rx="8"/>
+<text class="title" x="20" y="32" font-size="17" font-weight="600">Stage 1: 候補6モデルの MRR(n=185)</text>
+<text class="sub" x="20" y="55" font-size="13">青 = 決勝に進んだ上位4モデル。4位と5位の間で MRR が 0.306 下がる</text>
+<line class="grid" x1="190.0" y1="72" x2="190.0" y2="294" stroke-width="1"/>
+<text class="lbl" x="190.0" y="312" font-size="12" text-anchor="middle">0</text>
+<line class="grid" x1="305.0" y1="72" x2="305.0" y2="294" stroke-width="1"/>
+<text class="lbl" x="305.0" y="312" font-size="12" text-anchor="middle">0.25</text>
+<line class="grid" x1="420.0" y1="72" x2="420.0" y2="294" stroke-width="1"/>
+<text class="lbl" x="420.0" y="312" font-size="12" text-anchor="middle">0.5</text>
+<line class="grid" x1="535.0" y1="72" x2="535.0" y2="294" stroke-width="1"/>
+<text class="lbl" x="535.0" y="312" font-size="12" text-anchor="middle">0.75</text>
+<line class="grid" x1="650.0" y1="72" x2="650.0" y2="294" stroke-width="1"/>
+<text class="lbl" x="650.0" y="312" font-size="12" text-anchor="middle">1</text>
+<text class="lbl" x="178" y="101.0" font-size="13" text-anchor="end">embeddinggemma</text>
+<path class="hi" d="M190,85.0 H526.86 Q530.86,85.0 530.86,89.0 V103.0 Q530.86,107.0 526.86,107.0 H190 Z"/>
+<text class="val" x="538.9" y="101.0" font-size="13" font-weight="600">0.741</text>
+<text class="lbl" x="178" y="137.0" font-size="13" text-anchor="end">qwen3-embedding</text>
+<path class="hi" d="M190,121.0 H522.26 Q526.26,121.0 526.26,125.0 V139.0 Q526.26,143.0 522.26,143.0 H190 Z"/>
+<text class="val" x="534.3" y="137.0" font-size="13" font-weight="600">0.731</text>
+<text class="lbl" x="178" y="173.0" font-size="13" text-anchor="end">snowflake-arctic-embed2</text>
+<path class="hi" d="M190,157.0 H510.29999999999995 Q514.3,157.0 514.3,161.0 V175.0 Q514.3,179.0 510.29999999999995,179.0 H190 Z"/>
+<text class="val" x="522.3" y="173.0" font-size="13" font-weight="600">0.705</text>
+<text class="lbl" x="178" y="209.0" font-size="13" text-anchor="end">bge-m3</text>
+<path class="hi" d="M190,193.0 H508.0 Q512.0,193.0 512.0,197.0 V211.0 Q512.0,215.0 508.0,215.0 H190 Z"/>
+<text class="val" x="520.0" y="209.0" font-size="13" font-weight="600">0.700</text>
+<text class="lbl" x="178" y="245.0" font-size="13" text-anchor="end">nomic-embed-text(既定)</text>
+<path class="lo" d="M190,229.0 H367.24 Q371.24,229.0 371.24,233.0 V247.0 Q371.24,251.0 367.24,251.0 H190 Z"/>
+<text class="val" x="379.2" y="245.0" font-size="13" font-weight="400">0.394</text>
+<text class="lbl" x="178" y="281.0" font-size="13" text-anchor="end">all-minilm</text>
+<path class="lo" d="M190,265.0 H254.53999999999996 Q258.53999999999996,265.0 258.53999999999996,269.0 V283.0 Q258.53999999999996,287.0 254.53999999999996,287.0 H190 Z"/>
+<text class="val" x="266.5" y="281.0" font-size="13" font-weight="400">0.149</text>
+<line class="axis" x1="190" y1="72" x2="190" y2="294" stroke-width="1"/>
+<line class="cut" x1="20" y1="222" x2="700" y2="222" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text class="note" x="700" y="216" font-size="12" text-anchor="end">決勝ライン</text>
+</svg>
