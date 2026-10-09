@@ -3,7 +3,7 @@ import json
 import math
 import os
 
-BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+BASE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 K = 10
 
 
