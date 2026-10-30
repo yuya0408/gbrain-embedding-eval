@@ -34,7 +34,7 @@ BATCH = int(sys.argv[1]) if len(sys.argv) > 1 else 32
 
 def load_chunks(n):
     texts = []
-    with open(f"{BASE}\\chunks_eval.jsonl", "r", encoding="utf-8") as f:
+    with open(os.path.join(BASE, "chunks_eval.jsonl"), "r", encoding="utf-8") as f:
         for line in f:
             if not line.strip():
                 continue
