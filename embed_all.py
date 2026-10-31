@@ -62,11 +62,11 @@ def main():
         t0 = time.time()
 
         c_ids, c_vecs = embed_all(cfg["tag"], chunks, "chunk_text", cfg["doc_fmt"], cfg["char_limit"], "docs")
-        with open(f"{OUT_DIR}\\{key}.chunks.json", "w", encoding="utf-8") as f:
+        with open(os.path.join(OUT_DIR, f"{key}.chunks.json"), "w", encoding="utf-8") as f:
             json.dump({"ids": c_ids, "vectors": c_vecs}, f)
 
         q_ids, q_vecs = embed_all(cfg["tag"], queries, "query_text", cfg["query_fmt"], None, "queries")
-        with open(f"{OUT_DIR}\\{key}.queries.json", "w", encoding="utf-8") as f:
+        with open(os.path.join(OUT_DIR, f"{key}.queries.json"), "w", encoding="utf-8") as f:
             json.dump({"ids": q_ids, "vectors": q_vecs}, f)
 
         print(f"=== {key} total {time.time()-t0:.1f}s ===", flush=True)

@@ -39,16 +39,16 @@ def cosine_matrix_topk(query_vecs, chunk_vecs, k):
 
 
 def main():
-    chunks = load_jsonl(f"{BASE}\\chunks_eval.jsonl")
+    chunks = load_jsonl(os.path.join(BASE, "chunks_eval.jsonl"))
     chunk_id_to_slug = {c["chunk_id"]: c["slug"] for c in chunks}
 
-    queries = load_jsonl(f"{BASE}\\curated_queries.jsonl") + load_jsonl(f"{BASE}\\auto_queries.jsonl")
+    queries = load_jsonl(os.path.join(BASE, "curated_queries.jsonl")) + load_jsonl(os.path.join(BASE, "auto_queries.jsonl"))
 
     report = []
     for key in MODELS:
-        with open(f"{BASE}\\{key}.chunks.json", "r", encoding="utf-8") as f:
+        with open(os.path.join(BASE, f"{key}.chunks.json"), "r", encoding="utf-8") as f:
             cdata = json.load(f)
-        with open(f"{BASE}\\{key}.queries.json", "r", encoding="utf-8") as f:
+        with open(os.path.join(BASE, f"{key}.queries.json"), "r", encoding="utf-8") as f:
             qdata = json.load(f)
 
         chunk_ids = cdata["ids"]

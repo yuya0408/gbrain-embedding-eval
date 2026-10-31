@@ -46,9 +46,9 @@ def cosine_topk(query_vecs, chunk_vecs, k):
 
 
 def hits_for_model(key, queries, chunk_id_to_slug, qid_order):
-    with open(f"{BASE}\\{key}.chunks.json", "r", encoding="utf-8") as f:
+    with open(os.path.join(BASE, f"{key}.chunks.json"), "r", encoding="utf-8") as f:
         cdata = json.load(f)
-    with open(f"{BASE}\\{key}.queries.json", "r", encoding="utf-8") as f:
+    with open(os.path.join(BASE, f"{key}.queries.json"), "r", encoding="utf-8") as f:
         qdata = json.load(f)
 
     chunk_ids = cdata["ids"]
@@ -121,14 +121,14 @@ def holm_correct(pvalues):
 
 
 def main():
-    chunks = load_jsonl(f"{BASE}\\chunks_eval.jsonl")
+    chunks = load_jsonl(os.path.join(BASE, "chunks_eval.jsonl"))
     chunk_id_to_slug = {c["chunk_id"]: c["slug"] for c in chunks}
-    queries = load_jsonl(f"{BASE}\\curated_queries.jsonl") + load_jsonl(f"{BASE}\\auto_queries.jsonl")
+    queries = load_jsonl(os.path.join(BASE, "curated_queries.jsonl")) + load_jsonl(os.path.join(BASE, "auto_queries.jsonl"))
 
     # Common query order: queries present in every finalist's queries.json, intersected.
     qid_sets = []
     for key in FINALISTS:
-        with open(f"{BASE}\\{key}.queries.json", "r", encoding="utf-8") as f:
+        with open(os.path.join(BASE, f"{key}.queries.json"), "r", encoding="utf-8") as f:
             qdata = json.load(f)
         qid_sets.append(set(qdata["ids"]))
     common_qids = set.intersection(*qid_sets)
@@ -150,7 +150,7 @@ def main():
     alpha = 0.05
     if p >= alpha:
         print(f"\np >= {alpha}: no significant difference among the 4 finalists.")
-        print("Stopping here per the pre-registered design -- proceed to the throughput/latency tiebreaker.")
+        print("Stopping here, as decided before running this test -- quality does not decide; measure throughput/latency next.")
         return
 
     print(f"\np < {alpha}: significant difference detected -- running post-hoc pairwise McNemar (Holm-corrected).")
