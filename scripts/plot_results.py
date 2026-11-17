@@ -20,6 +20,10 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
+from matplotlib import font_manager  # noqa: E402
+
+# Japanese fonts for Windows / macOS / Linux; pass only the installed ones to avoid findfont warnings
+JP_FONTS = ["Yu Gothic", "Meiryo", "Hiragino Sans", "Noto Sans CJK JP", "IPAexGothic"]
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "figures"
 
@@ -41,8 +45,9 @@ SPEED = [("embeddinggemma", 2104, 1.89), ("snowflake-arctic-embed2", 2199, 0.78)
 
 
 def style():
+    installed = {f.name for f in font_manager.fontManager.ttflist}
     plt.rcParams.update({
-        "font.family": ["Yu Gothic", "Meiryo", "sans-serif"],
+        "font.family": [f for f in JP_FONTS if f in installed] + ["sans-serif"],
         "font.size": 10,
         "figure.facecolor": SURFACE,
         "axes.facecolor": SURFACE,
